@@ -30,4 +30,9 @@ Left out on purpose: `implement-spec` (one big integration branch instead of sma
 
 `.claude/settings.json` denies, in Claude Code, pushing to `main`, a bare `git push`, force-pushing, deleting or mirroring branches, and `gh pr merge`. Deny rules win over every permission mode, including `--dangerously-skip-permissions`.
 
-They stop the usual way to write these commands, not every way: `git -C . push origin main` or `sh -c '...'` is not matched ([Claude Code docs](https://code.claude.com/docs/en/permissions.md#bash-rule-limits)). They catch mistakes; they are not a security boundary. The only real block is a GitHub ruleset on `main` (require a pull request, no force-push, no deletion), which on a private repo needs GitHub Pro.
+They stop the usual way to write these commands, not every way: `git -C . push origin main` or `sh -c '...'` is not matched ([Claude Code docs](https://code.claude.com/docs/en/permissions.md#bash-rule-limits)). They catch mistakes; they are not a security boundary. The real block is the GitHub ruleset `protect-main` on `main`: a pull request is required (squash merge only), and force-pushes and deletion are blocked, for everyone.
+
+## CI and deploy
+
+- `.github/workflows/ci.yml` builds and tests every pull request and `main`, with no AWS access.
+- `.github/workflows/deploy.yml` deploys `main` to the dev AWS account. It builds and synthesizes without AWS access, then deploys after the owner approves the run in the environment `dev`. See [docs/deploy.md](docs/deploy.md), including the rules the CDK app must follow.
