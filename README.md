@@ -25,3 +25,9 @@ Updating means a new tag in that command and a PR, so every change to what the a
 | Docs for agents | `writing-for-agents` |
 
 Left out on purpose: `implement-spec` (one big integration branch instead of small PRs), `git-guardrails-claude-code` (blocks every push, so no PRs), `grill-me` (duplicate), `handoff`, `pr`, `wayfinder`, `triage` and the rest.
+
+## Guardrails
+
+`.claude/settings.json` denies, in Claude Code, pushing to `main`, a bare `git push`, force-pushing, deleting or mirroring branches, and `gh pr merge`. Deny rules win over every permission mode, including `--dangerously-skip-permissions`.
+
+They stop the usual way to write these commands, not every way: `git -C . push origin main` or `sh -c '...'` is not matched ([Claude Code docs](https://code.claude.com/docs/en/permissions.md#bash-rule-limits)). They catch mistakes; they are not a security boundary. The only real block is a GitHub ruleset on `main` (require a pull request, no force-push, no deletion), which on a private repo needs GitHub Pro.
