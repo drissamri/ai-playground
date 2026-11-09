@@ -1,0 +1,14 @@
+# Keeps the pinned action SHAs current. npm and Gradle come later, with infra/ and lambdas/.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7 # let new releases age before adopting them (supply-chain hygiene)
+    groups:
+      actions:
+        patterns: ["*"]
+    commit-message:
+      prefix: ci
