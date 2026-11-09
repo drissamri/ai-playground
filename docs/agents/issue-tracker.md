@@ -1,6 +1,6 @@
 # Issue tracker: GitHub
 
-Issues and specs for this repo live as GitHub issues in `drissamri/ai-playground`. Use the `gh` CLI (2.94 or newer) for all operations; it infers the repo from `git remote -v`.
+Issues and specs for this repo live as GitHub issues in `drissamri/ai-playground`. Use the `gh` CLI (2.94 or newer) for all operations.
 
 ## Conventions
 
@@ -11,6 +11,7 @@ Issues and specs for this repo live as GitHub issues in `drissamri/ai-playground
 - **Blocking**: GitHub's native issue dependencies. Add an edge with `gh issue create --blocked-by <n>,<n> ...` or `gh issue edit <child> --add-blocked-by <blocker>`. A ticket is unblocked when every blocker is closed.
 - **Count open blockers**: `gh api repos/drissamri/ai-playground/issues/<n> --jq .issue_dependencies_summary.blocked_by` (open blockers only; 0 means startable).
 - **Comment on an issue**: `gh issue comment <number> --body "..."`
+- **Triage label**: `ready-for-agent` marks a ticket an agent may pick up. There are no other triage labels.
 - **Apply / remove labels**: `gh issue edit <number> --add-label "..."` / `--remove-label "..."`
 - **Close**: post the explanation with `gh issue comment <number> --body "..."`, then `gh issue close <number>`. On an already-closed issue, `gh issue close --comment` drops the comment and still exits 0.
 
