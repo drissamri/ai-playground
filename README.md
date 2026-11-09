@@ -3,14 +3,15 @@ Playground for services built by AI coding agents on the devbox
 
 ## Agent skills
 
-A selection of [Matt Pocock's skills](https://github.com/mattpocock/skills) (MIT, see `.agents/skills/LICENSE-mattpocock-skills`), pinned to release `v1.3.2` in `skills-lock.json`. The files live in `.agents/skills/` (Codex and other agents); `.claude/skills/` symlinks to them for Claude Code. Installed with [skills.sh](https://skills.sh):
+A selection of [Matt Pocock's skills](https://github.com/mattpocock/skills) (MIT, see `.claude/skills/LICENSE-mattpocock-skills`), pinned to release `v1.3.2` in `skills-lock.json`, for Claude Code. Installed with [skills.sh](https://skills.sh) (needs Node 22.20 or newer):
 
 ```bash
-DO_NOT_TRACK=1 npx skills@1.7.6 add https://github.com/mattpocock/skills/tree/v1.3.2 \
-  -a claude-code -a codex -y -s <skill> ...
+DO_NOT_TRACK=1 npx -y skills@1.7.6 add https://github.com/mattpocock/skills/tree/v1.3.2 -a claude-code --copy -y \
+  -s setup-matt-pocock-skills -s grill-with-docs -s grilling -s domain-modeling -s to-spec -s to-tickets \
+  -s implement -s tdd -s codebase-design -s code-review -s diagnosing-bugs -s retro -s writing-for-agents
 ```
 
-Updating means a new tag in that command and a PR, so every change to what the agents follow is reviewed.
+Updating means a new tag in that command and a PR, so every change to what the agents follow is reviewed. Codex will only review (read-only) and does not need these skills; it reads `.agents/skills/`, so add `-a codex` if that changes.
 
 | Phase | Skill |
 |---|---|
