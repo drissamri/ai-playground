@@ -13,6 +13,7 @@ Playground for services built by AI coding agents on the devbox. What to build i
 - Test first (`/tdd`), and run the tests before you call work done.
 - Everything in the repo, the issues and the PRs is in English.
 - No secrets, tokens or personal data in code, commits, issues or PRs.
+- The CDK app must follow the deploy rules in `docs/deploy.md` (stack names, permissions boundary, no lookups in CI).
 
 ## Agent skills
 
